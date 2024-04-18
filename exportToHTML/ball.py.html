@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>ball.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ball.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># Import the pygame module</span>
+<span class="s2">import </span><span class="s1">pygame</span>
+
+<span class="s0"># Define the Ball class, which inherits from pygame.sprite.Sprite</span>
+<span class="s2">class </span><span class="s1">Ball</span><span class="s3">(</span><span class="s1">pygame</span><span class="s3">.</span><span class="s1">sprite</span><span class="s3">.</span><span class="s1">Sprite</span><span class="s3">):</span>
+    <span class="s2">def </span><span class="s1">_init_</span><span class="s3">(</span><span class="s1">self</span><span class="s3">):</span>
+        <span class="s1">super</span><span class="s3">().</span><span class="s1">_init_</span><span class="s3">()  </span><span class="s0"># Call the constructor of the parent class (pygame.sprite.Sprite)</span>
+
+        <span class="s0"># Create a surface for the ball image</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">image </span><span class="s3">= </span><span class="s1">pygame</span><span class="s3">.</span><span class="s1">Surface</span><span class="s3">((</span><span class="s4">20</span><span class="s3">, </span><span class="s4">20</span><span class="s3">))</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">image</span><span class="s3">.</span><span class="s1">fill</span><span class="s3">((</span><span class="s4">255</span><span class="s3">, </span><span class="s4">255</span><span class="s3">, </span><span class="s4">255</span><span class="s3">))  </span><span class="s0"># Fill the surface with white color</span>
+
+        <span class="s0"># Get the rectangular area of the image</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">rect </span><span class="s3">= </span><span class="s1">self</span><span class="s3">.</span><span class="s1">image</span><span class="s3">.</span><span class="s1">get_rect</span><span class="s3">()</span>
+
+        <span class="s0"># Set the initial position of the ball</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">center </span><span class="s3">= (</span><span class="s4">400</span><span class="s3">, </span><span class="s4">300</span><span class="s3">)</span>
+
+        <span class="s0"># Set the initial speeds of the ball in the x and y directions</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">speed_x </span><span class="s3">= </span><span class="s4">5</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">speed_y </span><span class="s3">= </span><span class="s4">5</span>
+
+    <span class="s0"># Method to move the ball</span>
+    <span class="s2">def </span><span class="s1">move</span><span class="s3">(</span><span class="s1">self</span><span class="s3">):</span>
+        <span class="s0"># Move the ball horizontally and vertically based on its speeds</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">x </span><span class="s3">+= </span><span class="s1">self</span><span class="s3">.</span><span class="s1">speed_x</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">y </span><span class="s3">+= </span><span class="s1">self</span><span class="s3">.</span><span class="s1">speed_y</span>
+
+        <span class="s0"># If the ball reaches the top or bottom of the screen, reverse its vertical speed to bounce it</span>
+        <span class="s2">if </span><span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">top </span><span class="s3">&lt;= </span><span class="s4">0 </span><span class="s2">or </span><span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">bottom </span><span class="s3">&gt;= </span><span class="s4">600</span><span class="s3">:</span>
+            <span class="s1">self</span><span class="s3">.</span><span class="s1">speed_y </span><span class="s3">*= -</span><span class="s4">1</span>
+
+    <span class="s0"># Method to reset the ball to its initial position and speed</span>
+    <span class="s2">def </span><span class="s1">reset</span><span class="s3">(</span><span class="s1">self</span><span class="s3">):</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">rect</span><span class="s3">.</span><span class="s1">center </span><span class="s3">= (</span><span class="s4">400</span><span class="s3">, </span><span class="s4">300</span><span class="s3">)  </span><span class="s0"># Reset the position of the ball</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">speed_x </span><span class="s3">= </span><span class="s4">5  </span><span class="s0"># Reset the horizontal speed of the ball</span>
+        <span class="s1">self</span><span class="s3">.</span><span class="s1">speed_y </span><span class="s3">= </span><span class="s4">5  </span><span class="s0"># Reset the vertical speed of the ball</span></pre>
+</body>
+</html>
